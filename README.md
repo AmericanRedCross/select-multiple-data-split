@@ -32,4 +32,7 @@ electron-packager . --overwrite --platform=darwin --arch=x64 --icon=img/logo.icn
 electron-packager . --platform=win32 --out=c:\release --icon=img/logo.ico
 ```
 
+There are many ways to generate OS specific packages:
+See [electron-packager](https://github.com/electron-userland/electron-packager)
+
 
