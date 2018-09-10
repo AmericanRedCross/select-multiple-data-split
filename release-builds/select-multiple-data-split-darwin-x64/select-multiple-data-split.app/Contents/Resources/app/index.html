@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>American Redcross - CSV Tool</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        
+        
+        <script src='./node_modules/angular/angular.js'></script>
+        <script src='./node_modules/papaparse/papaparse.js'></script>
+        <script src='angular_app.js'></script>
+    </head>
+    <body ng-app="masterApp" ng-controller="masterController">
+       
+        <div ng-controller="selectMultipleDataSplitController" style="margin: 10px;">
+        <div class="row">
+            <div class="col-md-12"><label style="font-size: 16px; padding:5px;">American Redcross</label></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Select File</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12" style="padding: 10px; border: 1px solid #e3e0e0; background: #eff6fc">
+                        <input type="file" file-change handler="fileSelect(files)" accept=".csv"  />
+                    </div>
+                    <div ng-if="error"  class="col-md-12">
+                        {{error_message}}
+                   </div>
+                   <div ng-if="loading" style="color: red;"  class="col-md-12">
+                       Please wait...Loading...
+                   </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        
+        <div class="row" ng-if="result.length>0">
+            <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Selected File Detail</h3>
+                </div>
+                <div class="panel-body">
+                   <div  class="col-md-12"  style="padding: 5px; border: 1px solid #e3e0e0;">
+                        <label>Total Records:  {{result.length}}</label> <br>
+                        <label>File Type:  {{file_ext}}</label>
+                        <br>
+                        <label>Sample data: First 5 records</label>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th ng-repeat="head in headers"> {{head}}</th>
+                            </tr>
+                            <tr ng-repeat="data in result | limitTo:5">
+                                <td ng-repeat="h in headers"> {{data[h]}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12" ng-if="result.length>0"  style="padding: 10px; border: 1px solid #e3e0e0; background: #eff6fc">
+                        <label>Select Fields to split and generate new CSV file.</label>
+                        <div>
+                            <table>
+                                <tr ng-repeat="h in headers">
+                                    <td><input
+                                        type="checkbox"
+                                        name="selectedFields[]"
+                                        value=" {{h}}"
+                                        ng-checked="selected_fields.indexOf(h) > -1"
+                                        ng-click="toggleSelection(h)"
+                                      > &nbsp;&nbsp;
+                                    </td>
+                                    <td><label> {{h}}</label></td>
+                                </tr>
+                            </table>
+                            Your selection:  {{selected_fields}}
+                            <br>
+                            <button ng-click="generateCSV()" class="btn btn-primary">Generate </button>
+                            <div style="color: red;" ng-if="loading">Please wait... Processing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        
+            
+        <div class="row" ng-if="final_array.length>0">
+            <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Generated Result</h3>
+                </div>
+                <div class="panel-body">
+                    <div >
+                        <label>First 5 records</label>
+                        <div class="alert alert-success">The new CSV file has been generated successfully.</div>
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th ng-repeat="head in headers_new"> {{head}}</th>
+                            </tr>
+                            <tr ng-repeat="data in final_array | limitTo:6">
+                                <td ng-repeat="h in headers_new"> {{data[h]}}</td>
+                            </tr>
+                        </table>
+                        <button ng-click="downloadCSV()" class="btn btn-success">Save Generated CSV</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>    
+            
+            
+        
+        
+    </div>
+   
+    </body>
+</html>
