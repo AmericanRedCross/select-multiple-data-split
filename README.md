@@ -1,5 +1,9 @@
 ## Overview
-This is a desktop application developed using electron framework.
+This is a desktop application developed using electron framework. Electron is a flexible and platform independent desktop application development framework utilizing the power of NodeJS.
+Applications such as Slack, WordPress Desktop, WhatsApp Desktop and many more are developed using electron. 
+
+`select-multiple-data-split` is an app the takes CSV file as a input and slit it based on the fields selected. 
+Find the test CSV file on the project root directory to test the application.
 
 ### Build and Release:
 - Navigate to the root of the project directory
