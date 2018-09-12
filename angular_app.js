@@ -34,7 +34,7 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
                       $scope.headers = results.meta.fields;
                       $scope.headers_new = results.meta.fields;;
                       $scope.result = results.data;
-                      console.log($scope.result);
+                      //console.log($scope.result);
                       $scope.loading = false;
                       $scope.$apply();
                 },
