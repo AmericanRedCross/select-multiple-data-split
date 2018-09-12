@@ -89,7 +89,7 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
     
     
     $scope.downloadCSV = function(){
-        var csv = Papa.unparse($scope.final_array);
+        var csv = Papa.unparse(convertFinal($scope.final_array));
         console.log($scope.final_array);
         console.log(csv);
         var csvData = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
@@ -105,15 +105,19 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
         tempLink.click();
     }
     
-    const arrayToObject = (array) =>
-            array.reduce((obj, item) => {
-              obj[item.id] = item
-              return obj
-            }, {})
     
     
-    
-    
+    const convertFinal = function(arrOfArr) {
+        return arrOfArr.map(function(arr) {
+            var obj = {};
+            for(var key in arr) {
+                if(arr.hasOwnProperty(key)) {
+                    obj[key] = arr[key];
+                }
+            }
+            return obj;
+        });
+    }
     
     
     var generateNewHeader = function(){
