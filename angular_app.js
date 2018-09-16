@@ -35,6 +35,15 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
                       $scope.headers_new = results.meta.fields;;
                       $scope.result = results.data;
                       //console.log($scope.result);
+                      
+                        for(var i=0;i<$scope.result.length;i++){
+                            for (var k in $scope.result[i]){
+
+                                $scope.result[i][k] = $scope.result[i][k].replace(/;/g, '');
+                                $scope.result[i][k] = $scope.result[i][k].replace(/_/g, '');
+                                
+                            }
+                        }
                       $scope.loading = false;
                       $scope.$apply();
                 },
@@ -68,6 +77,8 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
                 if(typeof r[h] === 'undefined'){
                     var answer = h.slice((h.lastIndexOf("_") - 1 >>> 0) + 2);
                     var question = h.replace("_"+answer, '');
+                    console.log(answer);
+                    //console.log(question);
                     if(r[question].includes(answer)){
                         new_data[h] = 'TRUE';
                     }
