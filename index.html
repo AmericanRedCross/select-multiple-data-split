@@ -56,7 +56,7 @@
                             <tr>
                                 <th ng-repeat="head in headers"> {{head}}</th>
                             </tr>
-                            <tr ng-repeat="data in result | limitTo:5">
+                            <tr ng-repeat="data in result | limitTo:10">
                                 <td ng-repeat="h in headers"> {{data[h]}}</td>
                             </tr>
                         </table>

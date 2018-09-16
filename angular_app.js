@@ -41,6 +41,9 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
 
                                 $scope.result[i][k] = $scope.result[i][k].replace(/;/g, '');
                                 $scope.result[i][k] = $scope.result[i][k].replace(/_/g, '');
+                                if($scope.result[i][k]===''||$scope.result[i][k]==null){
+                                    $scope.result[i][k] = 'na';
+                                }
                                 
                             }
                         }
@@ -63,7 +66,11 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
         
     }
     
-    
+    const replaceLast = function (stringval, what, replacement) {
+        var pcs = stringval.split(what);
+        var lastPc = pcs.pop();
+        return pcs.join(what) + replacement + lastPc;
+    };
     
     $scope.final_array = [];
     $scope.generateCSV = function(){
@@ -76,9 +83,10 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
             $scope.headers_new.forEach(function(h){
                 if(typeof r[h] === 'undefined'){
                     var answer = h.slice((h.lastIndexOf("_") - 1 >>> 0) + 2);
-                    var question = h.replace("_"+answer, '');
+                    var question = replaceLast(h, "_"+answer, '');
+                    //var question = h.replace("_"+answer, '');
                     console.log(answer);
-                    //console.log(question);
+                    console.log(question);
                     if(r[question].includes(answer)){
                         new_data[h] = 'TRUE';
                     }

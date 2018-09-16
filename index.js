@@ -36,7 +36,14 @@ const menuTemplate = [
 				click(){
 					app.quit();
 				}
-		    }
+		    },
+		    {
+				label:'Reset (New)',
+				accelerator: process.platform === 'darwin' ? 'Command+R':'Ctrl+R',
+				click(item, focusedWindow){
+					focusedWindow.reload();
+				}
+			}
 		]
 	}
 ];
