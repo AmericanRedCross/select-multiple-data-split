@@ -49,8 +49,11 @@
                 <div class="panel-body">
                    <div  class="col-md-12"  style="padding: 5px; border: 1px solid #e3e0e0;">
                         <label>Total Records:  {{result.length}}</label> <br>
-                        <label>File Type:  {{file_ext}}</label>
+                        <label>File Type:  {{file_ext}}</label> <br>
+                        <label>Number of Fields:  {{headers.length}}</label>
+                        
                         <br>
+                        <!--
                         <label>Sample data: First 5 records</label>
                         <table class="table table-bordered table-striped">
                             <tr>
@@ -60,6 +63,7 @@
                                 <td ng-repeat="h in headers"> {{data[h]}}</td>
                             </tr>
                         </table>
+                        -->
                     </div>
                     <div class="col-md-12" ng-if="result.length>0"  style="padding: 10px; border: 1px solid #e3e0e0; background: #eff6fc">
                         <label>Select Fields to split and generate new CSV file.</label>
@@ -98,8 +102,14 @@
                 </div>
                 <div class="panel-body">
                     <div >
-                        <label>First 5 records</label>
+                        
                         <div class="alert alert-success">The new CSV file has been generated successfully.</div>
+                        <label>Total Records:  {{final_array.length}}</label> <br>
+                        <label>File Type:  {{file_ext}}</label> <br>
+                        <label>Number of Fields (New CSV):  {{headers_new.length}}</label>
+
+                        <!--
+                        <label>First 5 records</label>
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th ng-repeat="head in headers_new"> {{head}}</th>
@@ -108,6 +118,8 @@
                                 <td ng-repeat="h in headers_new"> {{data[h]}}</td>
                             </tr>
                         </table>
+                    -->
+                        <br>
                         <button ng-click="downloadCSV()" class="btn btn-success">Save Generated CSV</button>
                     </div>
                 </div>
