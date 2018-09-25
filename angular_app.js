@@ -114,6 +114,7 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
     }
     
     
+    
     $scope.downloadCSV = function(){
         var csv = Papa.unparse(convertFinal($scope.final_array));
         console.log($scope.final_array);
