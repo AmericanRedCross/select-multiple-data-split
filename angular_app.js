@@ -19,6 +19,7 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
     
     $scope.selected_fields = [];
     $scope.fileSelect = function(files) {
+        //Reset values of the variables - clear field selection on upload of new file #6
        $scope.result = [];
        $scope.headers_new = [];
        $scope.headers = [];
@@ -114,7 +115,7 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
     }
     
     
-    
+
     $scope.downloadCSV = function(){
         var csv = Papa.unparse(convertFinal($scope.final_array));
         console.log($scope.final_array);
