@@ -20,6 +20,12 @@ ang_app.controller('selectMultipleDataSplitController', ['$scope','$http', funct
     $scope.selected_fields = [];
     $scope.fileSelect = function(files) {
        $scope.result = [];
+       $scope.headers_new = [];
+       $scope.headers = [];
+       $scope.filename = "";
+        $scope.file_ext = "";
+        $scope.final_array = [];
+        $scope.selected_fields = [];
        $scope.loading = true;
         var file = files[0];
         $scope.file_ext = ext = getExtensionFromFilename(file.name);
