@@ -12,7 +12,7 @@
     "angular": "^1.8.0",
     "bootstrap": "^4.3.1",
     "electron": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "papaparse": "^4.6.0"
   },
   "devDependencies": {
